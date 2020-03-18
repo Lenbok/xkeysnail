@@ -101,7 +101,10 @@ def launch(command):
     """Launch command"""
     def launcher():
         from subprocess import Popen
-        Popen(command)
+        try:
+            Popen(command)
+        except OSError as e:
+            print("Error launching command: " + str(e))
     return launcher
 
 
